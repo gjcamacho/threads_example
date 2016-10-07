@@ -20,11 +20,14 @@ public class Hilo extends Thread {
 	}
 	
 	public void run(){
+		Numeros nums=new Numeros();
 		
-		while(isAlive){
+		while(isAlive && !nums.bloqueo){
 			System.out.println(id + ": Estoy vivo!!!!!!");
 			
-			Numeros nums=apple.increment(this);
+			nums=apple.increment(this);
+			
+			
 			
 			System.out.println(id + ": cantidad= "+nums.cantidad);
 			System.out.println(id + ": nuevaCantidad= "+nums.nuevaCantidad);
@@ -42,8 +45,12 @@ public class Hilo extends Thread {
 			}*/
 		}
 		
-		System.out.println(id + ": I'm dying!!!!!!");
+		if(nums.bloqueo){
+			System.out.println(id + ": Se tarda mucho... me voy!");
+		}
 		
+		System.out.println(id + ": I'm dying!!!!!!");
+	
 	}
 
 }
